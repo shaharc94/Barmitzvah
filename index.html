@@ -2,7 +2,7 @@
 <html lang="he">
 <head>
 <meta charset="UTF-8">
-<title>צ'ק ליסט צילום - עלייה לתורה והרמת כוסית</title>
+<title>צ'ק ליסט צילום - כולל עדשות</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -10,7 +10,7 @@
     max-width: 480px;
     margin: auto;
     padding: 20px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
     background: #fdfdfd;
   }
@@ -27,6 +27,11 @@
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     cursor: pointer;
+    justify-content: space-between;
+  }
+  .lens {
+    font-size: 13px;
+    color: #555;
   }
   input[type="checkbox"] {
     width: 22px;
@@ -34,20 +39,8 @@
     margin-left: 12px;
   }
   @media print {
-    body {
-      max-width: none;
-      padding: 5px;
-      font-size: 12px;
-    }
-    label {
-      box-shadow: none;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 4px;
-    }
-    input[type="checkbox"] {
-      display: none;
-    }
+    input[type="checkbox"] { display: none; }
+    .lens { font-size: 11px; }
   }
 </style>
 </head>
@@ -55,29 +48,36 @@
 
 <h1>📸 צ'ק ליסט צילום - עלייה לתורה והרמת כוסית</h1>
 
-<label><input type="checkbox"> 1️⃣ צילום חזית בית הכנסת עם שלט</label>
-<label><input type="checkbox"> 2️⃣ צילום עיצוב המקום והשולחנות לפני הגעת אורחים</label>
-<label><input type="checkbox"> 3️⃣ צילום הילד עם תפילין בבית/בחוץ לפני הכניסה</label>
-<label><input type="checkbox"> 4️⃣ צילום המשפחה הגרעינית לפני הכניסה</label>
-<label><input type="checkbox"> 5️⃣ צילום הילד עם סבא וסבתא לפני תחילת הטקס</label>
-<label><input type="checkbox"> 6️⃣ צילום הילד מחזיק את ספר התורה ומביט למצלמה</label>
-<label><input type="checkbox"> 7️⃣ צילום קלוז-אפ של ידיים מחזיקות את הספר</label>
-<label><input type="checkbox"> 8️⃣ צילום הילד קורא בתורה - פריים צדדי</label>
-<label><input type="checkbox"> 9️⃣ צילום הילד קורא בתורה - פריים חזיתי</label>
-<label><input type="checkbox"> 🔟 צילום הבעת פנים בזמן קריאה בתורה</label>
-<label><input type="checkbox"> 11️⃣ צילום זריקת סוכריות - פריים רחב ומהצד</label>
-<label><input type="checkbox"> 12️⃣ צילום חיוכים וחיבוקים לאחר סיום הקריאה</label>
-<label><input type="checkbox"> 13️⃣ צילום תמונה משפחתית עם הילד לאחר העלייה</label>
-<label><input type="checkbox"> 14️⃣ צילום הילד לבד מחייך למצלמה עם ספר התורה</label>
-<label><input type="checkbox"> 15️⃣ צילום נעליים של הילד עם סוכריות שנפלו (יצירתי)</label>
-<label><input type="checkbox"> 16️⃣ צילום שולחן ערוך לפני תחילת ההרמת כוסית</label>
-<label><input type="checkbox"> 17️⃣ צילום הילד עם כוסית רגע לפני 'לחיים'</label>
-<label><input type="checkbox"> 18️⃣ צילום הרמת כוסית - כולם מרימים כוסות</label>
-<label><input type="checkbox"> 19️⃣ צילום קלוז-אפ של כוסות נפגשות</label>
-<label><input type="checkbox"> 20️⃣ צילום הבעת שמחה בזמן שתייה</label>
-<label><input type="checkbox"> 21️⃣ צילום פורטרטים של הילד עם קרובי משפחה נוספים</label>
-<label><input type="checkbox"> 22️⃣ צילום ילדים משחקים וצוחקים בזמן ההרמה</label>
-<label><input type="checkbox"> 23️⃣ צילום אווירה כללית - צחוק, שיחות ורגעים טבעיים</label>
+<!-- חלק ראשון - 18-105mm -->
+<h2>עדשה: 18-105mm f/2.8 (התחלה ועד סיום העלייה לתורה)</h2>
+
+<label><span>1️⃣ צילום חזית בית הכנסת עם שלט</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>2️⃣ צילום עיצוב המקום והשולחנות</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>3️⃣ צילום הילד עם תפילין בחוץ/בבית</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>4️⃣ צילום המשפחה הגרעינית לפני הכניסה</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>5️⃣ צילום הילד עם סבא וסבתא לפני הטקס</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>6️⃣ צילום הילד מחזיק את ספר התורה</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>7️⃣ קלוז-אפ של ידיים מחזיקות את הספר</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>8️⃣ הילד קורא בתורה – פריים צדדי</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>9️⃣ הילד קורא בתורה – פריים חזיתי</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>🔟 הבעת פנים בזמן הקריאה בתורה</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>11️⃣ זריקת סוכריות – פריים רחב ומהצד</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>12️⃣ חיבוקים וחיוכים אחרי הקריאה</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>13️⃣ תמונה משפחתית עם הילד לאחר העלייה</span><span class="lens">18-105</span><input type="checkbox"></label>
+<label><span>14️⃣ צילום שולחן ערוך לפני ההרמה</span><span class="lens">18-105</span><input type="checkbox"></label>
+
+<!-- החלפת עדשה ל-55mm -->
+<h2>החלף ל: 55mm f/1.8 (פורטרטים והרמת כוסית)</h2>
+
+<label><span>15️⃣ הילד לבד מחייך למצלמה עם הספר</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>16️⃣ נעליים של הילד עם סוכריות שנפלו (יצירתי)</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>17️⃣ הילד עם כוסית רגע לפני 'לחיים'</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>18️⃣ הרמת כוסית – כולם מרימים כוסות</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>19️⃣ קלוז-אפ כוסות נפגשות</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>20️⃣ הבעת שמחה בזמן שתייה</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>21️⃣ פורטרטים של הילד עם קרובי משפחה נוספים</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>22️⃣ ילדים משחקים וצוחקים בזמן ההרמה</span><span class="lens">55</span><input type="checkbox"></label>
+<label><span>23️⃣ אווירה כללית – צחוק ושיחות</span><span class="lens">55</span><input type="checkbox"></label>
 
 </body>
 </html>
