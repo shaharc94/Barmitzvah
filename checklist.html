@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>צ’ק ליסט צילום - עלייה לתורה והרמת כוסית</title>
+<style>
+body {
+    font-family: sans-serif;
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background: #f9f9f9;
+}
+h1 {
+    text-align: center;
+    padding: 15px;
+}
+section {
+    padding: 15px;
+}
+.blue {
+    background-color: #d0e7ff;
+}
+.yellow {
+    background-color: #fff7c2;
+}
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+.item label {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lens-tag {
+    font-size: 0.9em;
+    color: #555;
+    margin-right: 10px;
+}
+.priority {
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 10px;
+}
+button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
+}
+@media print {
+    input[type="checkbox"], button {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>צ’ק ליסט צילום - עלייה לתורה והרמת כוסית</h1>
+<button onclick="clearChecklist()">נקה סימונים</button>
+
+<section class="blue">
+    <h2>סקשן עדשה 18-105</h2>
+    <div id="blue-list"></div>
+</section>
+
+<section class="yellow">
+    <h2>סקשן עדשה 55</h2>
+    <div id="yellow-list"></div>
+</section>
+
+<script>
+// מבנה הפריימים
+const frames = [
+    { section: "blue", text: "צילום חזית בית הכנסת", lens: "18-105", priority: "⭐️⭐️" },
+    { section: "blue", text: "צילום שלט ושם הרחוב", lens: "18-105", priority: "⭐️" },
+    { section: "blue", text: "צילומי משפחה לפני תחילת התפילה", lens: "18-105", priority: "⭐️⭐️⭐️" },
+    { section: "blue", text: "צילום הילד מניח תפילין", lens: "18-105", priority: "⭐️⭐️⭐️" },
+    { section: "blue", text: "צילום קריאה בתורה רחב", lens: "18-105", priority: "⭐️⭐️" },
+    { section: "blue", text: "צילום קריאה בתורה מקרוב", lens: "18-105", priority: "⭐️⭐️⭐️" },
+    { section: "blue", text: "צילום ההורים במהלך הברכות", lens: "18-105", priority: "⭐️⭐️" },
+    { section: "blue", text: "צילום האחים מגיבים", lens: "18-105", priority: "⭐️" },
+    { section: "blue", text: "צילום זריקת סוכריות", lens: "18-105", priority: "⭐️⭐️⭐️" },
+    { section: "blue", text: "צילום סידורים ותפילין (פרטים קטנים)", lens: "18-105", priority: "⭐️" },
+    { section: "blue", text: "צילום אווירה כללית של הקהל", lens: "18-105", priority: "⭐️⭐️" },
+    { section: "blue", text: "צילום תמונה קבוצתית בסיום", lens: "18-105", priority: "⭐️⭐️⭐️" },
+    { section: "blue", text: "צילום סבא וסבתא עם הילד", lens: "18-105", priority: "⭐️⭐️" },
+    { section: "blue", text: "צילום כניסה ויציאה מבית הכנסת", lens: "18-105", priority: "⭐️" },
+    { section: "blue", text: "צילום עוגה וברכות לאחר העלייה", lens: "18-105", priority: "⭐️" },
+    { section: "yellow", text: "צילום שולחן הכיבוד לפני הגעת האורחים", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום בלונים ועיצוב שולחן", lens: "55", priority: "⭐️" },
+    { section: "yellow", text: "צילום פורטרט של הילד עם טלית", lens: "55", priority: "⭐️⭐️⭐️" },
+    { section: "yellow", text: "צילום פורטרטים של ההורים עם הילד", lens: "55", priority: "⭐️⭐️⭐️" },
+    { section: "yellow", text: "צילום פורטרטים של האחים", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום פורטרטים עם סבא וסבתא", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום נאומים וברכות", lens: "55", priority: "⭐️⭐️⭐️" },
+    { section: "yellow", text: "צילום הרמת כוסית", lens: "55", priority: "⭐️⭐️⭐️" },
+    { section: "yellow", text: "צילום אנשים מברכים", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום צחוקים ורגעים טבעיים", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום תקריב של כוסות שמפניה", lens: "55", priority: "⭐️" },
+    { section: "yellow", text: "צילום ילדים משחקים", lens: "55", priority: "⭐️" },
+    { section: "yellow", text: "צילום עוגה וברכות בהרמת כוסית", lens: "55", priority: "⭐️⭐️" },
+    { section: "yellow", text: "צילום תמונות אווירה שולחנות", lens: "55", priority: "⭐️" },
+    { section: "yellow", text: "צילום תמונה קבוצתית בסיום", lens: "55", priority: "⭐️⭐️" }
+];
+
+// יצירת הרשימות
+function generateChecklist() {
+    frames.forEach((frame, index) => {
+        const item = document.createElement("div");
+        item.className = "item";
+        const id = "chk_" + index;
+
+        const label = document.createElement("label");
+        label.setAttribute("for", id);
+        label.innerHTML = `${index + 1}. ${frame.text} <span class="lens-tag">${frame.lens}</span> <span class="priority">${frame.priority}</span>`;
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = id;
+        checkbox.checked = localStorage.getItem(id) === "true";
+        checkbox.addEventListener("change", () => {
+            localStorage.setItem(id, checkbox.checked);
+        });
+
+        item.appendChild(label);
+        item.appendChild(checkbox);
+
+        document.getElementById(frame.section + "-list").appendChild(item);
+    });
+}
+
+function clearChecklist() {
+    frames.forEach((frame, index) => {
+        const id = "chk_" + index;
+        localStorage.removeItem(id);
+        document.getElementById(id).checked = false;
+    });
+}
+
+// התחלה
+generateChecklist();
+</script>
+
+</body>
+</html>
